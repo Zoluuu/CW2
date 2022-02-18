@@ -96,3 +96,12 @@ app.put('/lesson/:id', (req, res, next) => {
 
 
 app.delete('/lesson/:id', (req, res, next) => {
+
+    db.collection("Lesson").deleteOne(
+        { _id: ObjectID(req.params.id) }, (e, result) => {
+            if (e) return next(e)
+            res.send(
+
+                result.delete === 1 ? { msg: "success" } : { msg: "error" }
+
+            );
