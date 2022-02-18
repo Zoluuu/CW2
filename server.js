@@ -46,3 +46,23 @@ app.get('/lesson', (req, res, next) => {
     })
 
 })
+
+//adding post
+app.post('/order', (req, res, next) => {
+    db.collection("Order").insert(req.body, (e, results) => {
+        if (e) return next(e)
+        res.send(results.ops)
+    })
+})
+
+// return with object id 
+
+const ObjectID = require('mongodb').ObjectID;
+app.get('/lesson/:id'
+    , (req, res, next) => {
+        db.collection("Lesson").findOne({ _id: new ObjectID(req.params.id) }, (e, result) => {
+            if (e) return next(e)
+            res.send(result)
+        })
+    })
+    
