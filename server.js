@@ -73,4 +73,12 @@ app.put('/lesson/:id', (req, res, next) => {
             db.collection("Lesson").updateOne(
                 { id: req.params.id },
                 {
-
+                    $set: {
+                        availableInventory: result.availableInventory - req.body.amount
+                    }
+                },
+                { safe: true, multi: false },
+                (e, result) => {
+                    if (e) return next(e)
+                    // res.send((result.result.n === 1) ? {msg: 'success'} : {msg: 'error'})
+                    res.send(
