@@ -82,3 +82,17 @@ app.put('/lesson/:id', (req, res, next) => {
                     if (e) return next(e)
                     // res.send((result.result.n === 1) ? {msg: 'success'} : {msg: 'error'})
                     res.send(
+                        result.modifiedCount === 1 ? { msg: "success" } : { msg: "error" }
+                    );
+                })
+        }
+        else {
+            res.send("not found")
+        }
+    })
+
+
+})
+
+
+app.delete('/lesson/:id', (req, res, next) => {
