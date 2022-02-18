@@ -19,3 +19,14 @@ app.use((req, res, next) => {
 
 // connect to MongoDB
 const MongoClient = require('mongodb').MongoClient;
+let db;
+MongoClient.connect('mongodb+srv://zon:KJPLiUgd8XDqSgql@cluster0.yeioy.mongodb.net/CourseAssignment?retryWrites=true&w=majority', (err, client) => {
+    db = client.db('CourseAssignment');;
+    console.log("db connected")
+})
+
+
+// dispaly a message for root path to show that API is working
+app.get('/', (req, res, next) => {
+    res.send('Select a collection, e.g., /collection/messages')
+})
