@@ -30,3 +30,19 @@ MongoClient.connect('mongodb+srv://zon:KJPLiUgd8XDqSgql@cluster0.yeioy.mongodb.n
 app.get('/', (req, res, next) => {
     res.send('Select a collection, e.g., /collection/messages')
 })
+
+// get the collection name
+app.param('collectionName', (req, res, next, collectionName) => {
+    // req.collection = db.collection("lesson")
+    // console.log('collection name:', req.collection)
+    return next()
+})
+
+// retrieve all the objects from an collection
+app.get('/lesson', (req, res, next) => {
+    db.collection("Lesson").find({}).toArray((e, results) => {
+        if (e) return next(e)
+        res.send(results)
+    })
+
+})
