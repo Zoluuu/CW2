@@ -65,4 +65,12 @@ app.get('/lesson/:id'
             res.send(result)
         })
     })
-    
+//update an object 
+app.put('/lesson/:id', (req, res, next) => {
+
+    db.collection("Lesson").findOne({ id: req.params.id }, (e, result) => {
+        if (result) {
+            db.collection("Lesson").updateOne(
+                { id: req.params.id },
+                {
+
