@@ -105,3 +105,13 @@ app.delete('/lesson/:id', (req, res, next) => {
                 result.delete === 1 ? { msg: "success" } : { msg: "error" }
 
             );
+
+        })
+    })
+    
+    
+    
+    const port = process.env.PORT || 3000
+    app.listen(port)
+    
+    console.log(port);
